@@ -1,15 +1,14 @@
-import './App.css';
+import './App.scss';
 import { Pokemons } from '../Pokemons/Pokemons';
 
 function App() {
   return (
     <div className="app">
-      <span>Pokemon App</span>
       <main>
         <Pokemons/>
       </main>
     </div>
   );
-}
+};
 
 export default App;

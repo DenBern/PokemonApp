@@ -28,7 +28,7 @@ export const PokeAPI = () => {
               {
                 id: pokemon.id,
                 name: pokemon.name,
-                img: pokemon.sprites.other.home.front_default,
+                img: pokemon.sprites.other.dream_world.front_default,
                 weight: pokemon.weight,
                 height: pokemon.height,
                 types: pokemon.types.map(item => item.type.name),

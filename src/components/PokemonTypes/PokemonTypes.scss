@@ -1,0 +1,23 @@
+.type {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+  border-radius: 50px;
+  padding: 5px 10px;
+
+  .type__img {
+    display: flex;
+    justify-content: center;
+    padding: 7%;
+    width: 5vw;
+    height: 5vw;
+    background-color: #fff;
+    border-radius: 50px;
+  }
+
+  h4 {
+    font-size: 2vw;
+    font-weight: 400;
+    text-transform: capitalize;
+  }
+}

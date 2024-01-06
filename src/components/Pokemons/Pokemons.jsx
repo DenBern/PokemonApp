@@ -1,19 +1,49 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PokeAPI } from "../../service/PokeAPI";
+import { Pokemon } from "../Pokemon/Pokemon";
+
+import './Pokemons.scss';
 
 export const Pokemons = () => {
   const {getPokemons, pokemonsData} = PokeAPI();
 
-  const pokemon = pokemonsData.map(pokemon => <img key={pokemon.id} src={pokemon.img} alt={pokemon.name} width={150} height={150}/>);
+  const translateNext = -100;
+  const translatePrev = 100;
+  const [translate, setTranslate] = useState(0);
 
   useEffect(() => {
-    console.log('pokemons')
-    getPokemons();
+    getPokemons(3, 4);
   }, []);
 
   return (
     <>
-      {pokemon}
+      <button
+        onClick={() => setTranslate(translate + translatePrev)}
+        className="arrow-left"
+      />
+      <div className="pokemons__wrapper">
+        <div
+          className="pokemons"
+          style={
+            {
+              transform: `translateX(${translate}%)`
+            }
+          }
+        >
+          {pokemonsData.map(pokemon =>
+            <Pokemon
+              img={pokemon.img}
+              name={pokemon.name}
+              key={pokemon.id}
+              types={pokemon.types}
+            />
+          )}
+        </div>
+      </div>
+      <button
+        onClick={() => setTranslate(translate + translateNext)}
+        className="arrow-right"
+      />
     </>
   );
 };

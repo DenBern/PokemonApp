@@ -3,8 +3,6 @@ import { typesPokemon } from "../../utils/typesPokemon";
 import './PokemonTypes.scss'
 export const PokemonTypes = ({types}) => {
 
-  console.log(types)
-
   return (
     types.map((type, i) =>
       <div

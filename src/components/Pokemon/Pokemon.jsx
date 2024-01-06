@@ -4,7 +4,6 @@ import { typesPokemon } from "../../utils/typesPokemon";
 import './Pokemon.scss';
 
 export const Pokemon = ({id, name, img, types}) => {
-
   return (
     <>
       <div className="pokemon__wrapper">
@@ -23,7 +22,6 @@ export const Pokemon = ({id, name, img, types}) => {
             src={img}
             alt={name}
           />
-          {/* <h3 style={{color: `${typesPokemon[types[0]].color}`}}>{name}</h3> */}
         </div>
         <div className="types__wrapper">
           <PokemonTypes types={types}/>

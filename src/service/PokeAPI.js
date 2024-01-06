@@ -4,6 +4,7 @@ export const PokeAPI = () => {
   const defaultLimit = 3;
   const defaultOffset = 0;
   const _pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?offset=';
+  const _pokemonURL = 'https://pokeapi.co/api/v2/pokemon/';
 
   const [pokemonsData, setPokemonsData] = useState([]);
   const [maxPages, setMaxPages] = useState();
@@ -20,11 +21,10 @@ export const PokeAPI = () => {
     getData(`${_pokemonsURL}${offset}&limit=${limit}`)
       .then((pokemons) => {
         setMaxPages(Math.round(pokemons.count / defaultLimit));
-        console.log(pokemons)
         const promises = pokemons.results.map((pokemon) => getData(pokemon.url));
         Promise.all(promises)
           .then((pokemons) => {
-            setPokemonsData(pokemons.map(pokemon=> (
+            setPokemonsData(pokemons.map(pokemon => (
               {
                 id: pokemon.id,
                 name: pokemon.name,
@@ -53,10 +53,31 @@ export const PokeAPI = () => {
       });
   };
 
+  const getPokemon = async (id) => {
+    getData(`${_pokemonURL}${id}`)
+      .then(pokemon => {
+        setPokemonsData((prevPokemonsData) => [
+          ...prevPokemonsData,
+          {
+            id: pokemon.id,
+            name: pokemon.name,
+            img: pokemon.sprites.other.dream_world.front_default,
+            width: pokemon.width,
+            height: pokemon.height,
+            types: pokemon.types.map(item => item.type.name),
+            stats: {
+
+            }
+          }
+        ])
+      })
+  }
+
   return {
     getPokemons,
     pokemonsData,
     maxPages,
     defaultOffset,
+    getPokemon,
   }
 };
